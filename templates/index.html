@@ -1,13 +1,6 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<!-- Stylesheets -->
-	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css') }}">
-
-	<!-- Javascript -->
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript" src="{{url_for('static', filename='js/script.js') }}"></script>
-<head/>
-<body>
+{% extends "base.html" %}
+{% block body %}
 	<h1>test</h1>
-</body>
+	<h2 class="right" id ="special">Content</h2>
+	<p class="right">Click here to record!</p>
+{% endblock %}

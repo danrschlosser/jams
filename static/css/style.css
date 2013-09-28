@@ -1,3 +1,16 @@
 .red {
 	color: white;
 }
+
+p {
+	color: blue;
+	text-decoration: underline;
+}
+
+.right {
+	float: right;
+}
+
+#special {
+	background-color: gray;
+}
