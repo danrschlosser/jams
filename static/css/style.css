@@ -40,7 +40,7 @@ h1, .logo {
 	margin: 0 10px;
 }
 
-p {
+p, ul {
 	line-height: 1.5;
 }
 
@@ -110,7 +110,7 @@ padding: 30px 40px;
 }
 
 .node {
-	background-color: #c5e6ff;
+	background-color: #b5ceed;
 	border: 2px solid #3e7aab;
 	border-radius: 10px;
 	margin: 10px 20px;
