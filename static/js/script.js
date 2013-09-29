@@ -1,3 +1,5 @@
+window.shouldKeepBlinking = true;
+
 $(document).ready(function(){
     // setup jsPlumb defaults.
     jsPlumb.importDefaults({
@@ -17,13 +19,17 @@ $(document).ready(function(){
     var index = 1;
     $('.new-node').click(function(e) {
         e.preventDefault(index);
-        $(".greeting").fadeTo(200,0);
+        $(".greeting").fadeTo(400,0);
         var id = createNode(index);
         startRecording();
         index += 1;
         stopRecording(id);
     });                                             
 
+    $(document).on("click", '.icon-circle-empty', function(e) {
+    	e.preventDefault();
+    	window.shouldKeepBlinking = false;
+    });
     // bind to connection/connectionDetached events and update the list of connections on screen
     jsPlumb.bind("connection", function(info, originalEvent) {
         updateConnections(info.connection);
@@ -34,8 +40,6 @@ $(document).ready(function(){
         updateConnections(info.connection, true);
         console.log("disconnected")
     });
-
-
 });
 
 var audio_context;
@@ -59,12 +63,14 @@ var createNode = function(index) {
                     href: "#"
                 }).append(
                     $("<div>", {
-                        "class": "play-node icon-play"
+                        "class": "play-node icon-circle-empty"
                     })
                 )
             )
         )
     );
+    blink(id);
+
     jsPlumb.draggable(id);
 
     // configure some drop options for use by all endpoints.
@@ -93,9 +99,18 @@ var createNode = function(index) {
 }
 
 
-var blink = function(){
+
+var blink = function(id){
     console.log("blinkin'");
-    $('.icon-circle-empty').delay(200).fadeTo(200,0.5).delay(200).fadeTo(200,1, blink);
+    $('#' + id + ' .icon-circle-empty').delay(200).fadeTo(200,0.5).delay(200).fadeTo(200,1, function(){
+    	console.log(window.shouldKeepBlinking);
+    	if (window.shouldKeepBlinking) {
+    		blink(id);
+    	} else {
+    		window.shouldKeepBlinking = true;
+    		$(this).removeClass("icon-circle-empty").addClass("icon-play");
+    	}
+    });
 }
 
 var startUserMedia = function(stream) {
