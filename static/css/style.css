@@ -17,10 +17,13 @@ html, body {
 	background: white url("../img/noise_lines.png") repeat;
 }
 
-body {
-	position: relative;
+body, input {
 	font-family: 'Asap', sans-serif;
 	font-weight: 300;
+}
+
+body {
+	position: relative;
 	background-color: whitesmoke;
 }
 
@@ -112,9 +115,21 @@ padding: 30px 40px;
 	border-radius: 10px;
 	margin: 10px 20px;
 	padding: 10px 10px;
-	width: 100px;
+	width: 200px;
 	height: 25px;
 	box-shadow: 3px 3px 1px #999;
+}
+
+.node input {
+	display: inline-block;
+	background-color: rgba(255,255,255,0.0);
+	border: 0;
+	size: 80px;
+	width: 82%;
+	padding: 0;
+	margin: 0;
+	height: 25px;
+	font-size: 1em;
 }
 
 .size {
@@ -128,16 +143,24 @@ padding: 30px 40px;
 	height: 100%;
 }
 
-.new-clip {
+.play-node {
 	width: 100%;
 	font-size: 1.5em;
-	color: #844;
+	color: #119E6F;
+}
+
+.new-node{
+	font-size: 4em;
+	color: #119E6F;
+	position: absolute;
+	right: 10px;
+	bottom: 18px;
 }
 
 .about {
 	position: absolute;
 	font-size: 0.9em;
-	font-color: #3e7aab;
+	color: #3e7aab;
 	text-decoration: none;
 	bottom: 0;
 	left: 50%;
@@ -171,8 +194,3 @@ padding: 30px 40px;
 	height: calc(100%-50px);
 }
 
-.new-clip {
-	width: 20px;
-	height: 20px;
-	background: blue;
-}
