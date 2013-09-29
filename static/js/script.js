@@ -4,6 +4,8 @@ $(document).ready(function(){
         HoverClass:"connector-hover"
     });
 
+    recordingSetup();
+
     jsPlumb.Defaults.Container = $('#container');
     jsPlumb.draggable(jsPlumb.getSelector(".node"));
 
@@ -55,12 +57,66 @@ $(document).ready(function(){
         index = index + 1;
     });
 
-    var blink = function(){
-    	console.log("blinkin'");
-    	$('.icon-circle-empty').delay(200).fadeTo(200,0.5).delay(200).fadeTo(200,1, blink);
-	}
-	blink();
+    var audio_context;
+    var recorder;
 
+    function startUserMedia(stream) {
+        var input = audio_context.createMediaStreamSource(stream);
+        var zeroGain = audio_context.createGain();
+        zeroGain.gain.value = 0;
+        input.connect(zeroGain);
+        zeroGain.connect(audio_context.destination);
+        recorder = new Recorder(input);
+    };
+
+    function startRecording() {
+        recorder && recorder.record();
+        this.disabled = true;
+        this.nextElementSibling.disabled = false;
+    };
+
+    function stopRecording() {
+        recorder && recorder.stop();
+        this.disabled = true;
+        this.previousElementSibling.disabled = false;
+
+        recorder && recorder.exportWAV(function(blob) {
+    /*        console.log(blob);
+            $('userfile').val(blob);
+            $.ajaxFileUpload({
+                url: "../ajax/saverecording/", 
+                secureuri: false,
+                fileElementId: 'userfile',
+                dataType: blob.type,
+                data: blob,
+                success: function(data, status) {
+                    if(data.status != 'error')
+                        alert("hoera!");
+                    alert(data.msg);
+                }
+            });
+            */
+
+            var fd = new FormData();
+            fd.append('audio', blob);
+            $.ajax({
+                url: '/upload',
+                type: 'POST',
+                data: fd,
+                processData: false,
+                contentType: false
+            }).done(function(data) {
+                console.log(data);
+            });
+        });
+        recorder.clear();
+    };
+
+    var blink = function(){
+        console.log("blinkin'");
+        $('.icon-circle-empty').delay(200).fadeTo(200,0.5).delay(200).fadeTo(200,1, blink);
+    }
+    blink();
 
     var audio_context;
     var recorder;
@@ -119,6 +175,4 @@ $(document).ready(function(){
         btnStart.addEventListener("click", startRecording);
         btnStop.addEventListener('click', stopRecording);
     };
-
-    //recordingSetup();
 });
