@@ -107,14 +107,31 @@ padding: 30px 40px;
 }
 
 .node {
-	background-color: lightblue;
+	background-color: #c5e6ff;
 	border: 2px solid #3e7aab;
 	border-radius: 10px;
 	margin: 10px 20px;
-	padding: 10px 20px;
+	padding: 10px 10px;
 	width: 100px;
-	height: 40px;
-	box-shadow: 3px 3px 1px #;
+	height: 25px;
+	box-shadow: 3px 3px 1px #999;
+}
+
+.size {
+	display: inline-block;
+	float: right;
+}
+
+.size a {
+	float: right;
+	width: 100%;
+	height: 100%;
+}
+
+.new-clip {
+	width: 100%;
+	font-size: 1.5em;
+	color: #844;
 }
 
 .about {
