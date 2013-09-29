@@ -194,3 +194,18 @@ padding: 30px 40px;
 	height: calc(100%-50px);
 }
 
+
+.new-clip {
+	width: 20px;
+	height: 20px;
+	background: blue;
+}
+
+.node {
+	position: absolute;
+}
+
+/** DRAG/DROP CLASSES **/
+.dragActive { border:2px dotted orange; }
+.dropHover { border:1px dotted red; }
+

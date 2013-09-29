@@ -1,22 +1,58 @@
 $(document).ready(function(){
-    jsPlumb.Defaults.Container = $('#container');
-    jsPlumb.draggable($('#container *'));
+    jsPlumb.importDefaults({
+        DragOptions : { cursor: "pointer", zIndex:2000 },
+        HoverClass:"connector-hover"
+    });
 
-    $('.new-clip').click(function() {
+    jsPlumb.Defaults.Container = $('#container');
+    jsPlumb.draggable(jsPlumb.getSelector(".node"));
+
+    var index = 2;
+    var previous = "node1";
+    $('.new-node').click(function(e) {
+        e.preventDefault();
+        var id = "node" + index;
         console.log("Test.");
         $('#container').append(
             $("<div>", {
-                "class": "node"
+                "class": "node",
+                id: id
             }).append(
                 $("<input>", {
                     type: "text",
                     placeholder: "Title"
                 }),
                 $("<div>", {
-                    "class": "play-pause"
-                })
+                    "class": "size"
+                }).append(
+                    $("<a>", {
+                        href: "#"
+                    }).append(
+                        $("<div>", {
+                            "class": "play-node icon-play"
+                        })
+                    )
+                )
             )
         );
+        jsPlumb.draggable(id);
+
+        var common = {
+            cssClass:"myCssClass"
+        };
+        jsPlumb.connect({
+            source: previous,
+            target: id,
+            anchor:[ "Continuous", { faces:["top","bottom"] }],
+            endpoint:[ "Dot", { radius:5, hoverClass:"myEndpointHover" }, common ],
+            connector:[ "Bezier", { curviness:100 }, common ],
+            overlays: [
+                [ "Arrow", { foldback:0.2 }, common ]    
+            ]
+        });
+
+        previous = id;
+        index = index + 1;
     });
 
     var blink = function(){
