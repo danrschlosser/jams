@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request
-from flask.ext.pymongo import PyMongo
+from flask.ext.pymongo import PyMongo, ObjectId
 from datetime import datetime
 from bson.json_util import dumps
+import wave
 
 app = Flask(__name__)
 mongo = PyMongo(app)
+
+audio_loc = 'static/audio/'
 
 class routes:
     @app.route('/')
@@ -22,7 +25,7 @@ class routes:
         file_name = str(datetime.now()) + '.wav'
 
         wav = request.files.get('audio')
-        wav.save('static/audio/' + file_name)
+        wav.save(audio_loc + file_name)
 
         mongo.db.nodes.insert({'file_name': file_name, 'clip_name': '', 'nodes': []})
         newnode = mongo.db.nodes.find({'file_name': file_name})[0]
@@ -30,14 +33,11 @@ class routes:
 
     @app.route('/download', methods=['GET'])
     def download():
-        
-        obj_id = ObjectId(request.form.get('id'))
-        nodeToPlay = mongo.db.nodes.find({'_id': obj_id})
+        obj_id = ObjectId(request.args.get('id'))
+        nodeToPlay = mongo.db.nodes.find({'_id': obj_id})[0]
         file_name = nodeToPlay.get('file_name')
-        wave.open('static/audio/' + file_name, 'r')
-        wav = wave.readframes(10000000000)
         
-        return 
+        return 'localhost:5000/' + audio_loc + file_name
 
 if __name__ == '__main__':
     app.run(debug=True)

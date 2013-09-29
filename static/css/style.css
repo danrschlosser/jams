@@ -238,6 +238,10 @@ padding: 30px 40px;
 	font-weight: 700;
 }
 
+#hidden {
+    display: none
+}
+
 /** DRAG/DROP CLASSES **/
 .dragActive { border:2px dotted orange; }
 .dropHover { border:1px dotted red; }

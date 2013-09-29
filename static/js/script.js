@@ -21,7 +21,6 @@ $(document).ready(function(){
         var id = createNode(index);
         startRecording();
         index += 1;
-        stopRecording(id);
     });                                             
 
     $(document).on("click", '.icon-circle-empty', function(e) {
@@ -33,6 +32,7 @@ $(document).ready(function(){
     	e.preventDefault();
     	//playback, icon switches to pause
     	$(this).removeClass("icon-play").addClass("icon-pause");
+        startPlaying($(this).attr('data-id'))
 
     })
 
@@ -123,6 +123,7 @@ var blink = function(id){
 	    }); 
     } else {
 		$button.removeClass("icon-circle-empty").addClass("icon-play");
+        stopRecording(id);
 	}
 }
 
@@ -152,11 +153,26 @@ var stopRecording = function(id) {
             processData: false,
             contentType: false
         }).done(function(data) {
-            $('#' + id).attr('data-id', data);
+            var node = $('#' + id);
+            node.attr('data-id', data);
         });
     });
     recorder.clear();
 };
+
+var startPlaying = function(data) {
+    $.ajax({
+        url: '/download',
+        type: 'GET',
+        data: {
+            id: data
+        }
+    }).done(function(data) {
+        $('<audio autoplay></audio>', {
+            src: data
+        });
+    });
+}
 
 var recordingSetup = function() {
 
