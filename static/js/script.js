@@ -1,5 +1,3 @@
-window.shouldKeepBlinking = true;
-
 $(document).ready(function(){
     // setup jsPlumb defaults.
     jsPlumb.importDefaults({
@@ -28,7 +26,7 @@ $(document).ready(function(){
 
     $(document).on("click", '.icon-circle-empty', function(e) {
     	e.preventDefault();
-    	window.shouldKeepBlinking = false;
+    	$(this).removeClass("blinking");
     });
 
     $(document).on("click", '.icon-play', function(e) {
@@ -79,7 +77,7 @@ var createNode = function(index) {
                     href: "#"
                 }).append(
                     $("<div>", {
-                        "class": "play-node icon-circle-empty"
+                        "class": "play-node icon-circle-empty blinking"
                     })
                 )
             )
@@ -96,13 +94,13 @@ var createNode = function(index) {
         activeClass:"dragActive"
     };
 
-    var color2 = "#316b31";
+    var color2 = "#3e7aab";
     var endpoint = {
         endpoint:["Dot", { radius:11 }],
         paintStyle:{ fillStyle:color2 },
         isSource:true,
         scope:"green dot",
-        connectorStyle:{ strokeStyle:color2, lineWidth:6 },
+        connectorStyle:{ strokeStyle:color2, lineWidth:3 },
         connector: ["Flowchart", { cornerRadius:10 } ],
         isTarget:true,
         maxConnections: 10,
@@ -118,15 +116,14 @@ var createNode = function(index) {
 
 var blink = function(id){
     console.log("blinkin'");
-    $('#' + id + ' .icon-circle-empty').delay(200).fadeTo(200,0.5).delay(200).fadeTo(200,1, function(){
-    	console.log(window.shouldKeepBlinking);
-    	if (window.shouldKeepBlinking) {
+    var $button = $('#' + id + ' .icon-circle-empty');
+    if($button.hasClass("blinking")) {
+    	$button.delay(200).fadeTo(200,0.5).delay(200).fadeTo(200,1, function(){
     		blink(id);
-    	} else {
-    		window.shouldKeepBlinking = true;
-    		$(this).removeClass("icon-circle-empty").addClass("icon-play");
-    	}
-    });
+	    }); 
+    } else {
+		$button.removeClass("icon-circle-empty").addClass("icon-play");
+	}
 }
 
 var startUserMedia = function(stream) {
