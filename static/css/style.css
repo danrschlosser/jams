@@ -106,6 +106,17 @@ padding: 30px 40px;
 	font-size: 1.2em;
 }
 
+.node {
+	background-color: lightblue;
+	border: 2px solid #3e7aab;
+	border-radius: 10px;
+	margin: 10px 20px;
+	padding: 10px 20px;
+	width: 100px;
+	height: 40px;
+	box-shadow: 3px 3px 1px #;
+}
+
 .about {
 	position: absolute;
 	font-size: 0.9em;
