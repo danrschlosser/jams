@@ -10,15 +10,61 @@ function onFailSoHard(e) {
     console.log('Rejected!', e);
 };
 
+var audio_context;
+var recorder;
+
+function startUserMedia(stream) {
+    var input = audio_context.createMediaStreamSource(stream);
+    input.connect(audio_context.destination);
+    recorder = new Recorder(input);
+}
+
+function startRecording() {
+    recorder && recorder.record();
+    this.disabled = true;
+    this.nextElementSibling.disabled = false;
+}
+
+function stopRecording() {
+    recorder && recorder.stop();
+    this.disabled = true;
+    this.previousElementSibling.disabled = false;
+
+    // create WAV download link using audio data blob
+    createDownloadLink();
+
+    recorder.clear();
+}
+
+function createDownloadLink() {
+    recorder && recorder.exportWAV(function(blob) {
+        var url = URL.createObjectURL(blob);
+        var recordingslist = $('#recordingslist');
+        var li = document.createElement('li');
+        var au = document.createElement('audio');
+        var hf = document.createElement('a');
+
+        au.controls = true;
+        au.src = url;
+        hf.href = url;
+        hf.download = new Date().toISOString() + '.wav';
+        hf.innerHTML = hf.download;
+        li.appendChild(au);
+        li.appendChild(hf);
+        recordingslist.append(li);
+    });
+}
+
 function recordingSetup() {
     window.onload = function() {
+
+        audio_context = new webkitAudioContext()
 
         //Compatibility
         navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
 
         var canvas = document.getElementById("canvas"),
             context = canvas.getContext("2d"),
-            audio = document.getElementById("audio"),
             btnStart = document.getElementById("btnStart"),
             btnStop = document.getElementById("btnStop"),
             btnPhoto = document.getElementById("btnPhoto"),
@@ -27,24 +73,13 @@ function recordingSetup() {
                 audio: true
             };
 
-        btnStart.addEventListener("click", function() {
-            var localMediaStream;
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia(audioObj, startUserMedia);
+        }
 
-            if (navigator.getUserMedia) {
-                navigator.getUserMedia(audioObj, function(stream) {              
-                    audio.src = (navigator.webkitGetUserMedia) ? window.webkitURL.createObjectURL(stream) : stream;
-                    localMediaStream = stream;
-
-                }, function(error) {
-                    console.error("Video capture error: ", error.code);
-                });
-
-                btnStop.addEventListener("click", function() {
-                    localMediaStream.stop();
-                });
-            }
-        });
-    };
+        btnStart.addEventListener("click", startRecording);
+        btnStop.addEventListener('click', stopRecording);
+    }
 }
 
 function hasGetUserMedia() {
