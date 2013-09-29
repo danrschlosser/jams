@@ -109,8 +109,23 @@ padding: 30px 40px;
 	font-size: 1.2em;
 }
 
+.greeting {
+	background-color: #c5e6ff;
+	border: 0;
+	border-radius: 30px 30px 0px;
+	margin: 10px 20px;
+	padding: 10px 10px;
+	width: 230px;
+	height: 25px;
+	position: absolute;
+	right: 65px;
+	bottom: 65px;
+	text-align: center;
+	box-shadow: 3px 3px 1px #999;
+}
+
 .node {
-	background-color: #b5ceed;
+	background-color: #c5e6ff;
 	border: 2px solid #3e7aab;
 	border-radius: 10px;
 	margin: 10px 20px;
