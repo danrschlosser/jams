@@ -10,14 +10,18 @@ $(document).ready(function(){
         Container : "container"
     });
 
+    recordingSetup();
+
     // jsPlumb.Defaults.Container = $('#container');
     
     var index = 1;
     $('.new-node').click(function(e) {
         e.preventDefault(index);
         $(".greeting").fadeTo(200,0);
-        createNode(index);
+        var id = createNode(index);
+        startRecording();
         index += 1;
+        stopRecording(id);
     });                                             
 
     // bind to connection/connectionDetached events and update the list of connections on screen
@@ -31,15 +35,14 @@ $(document).ready(function(){
         console.log("disconnected")
     });
 
-    var audio_context;
-    var recorder;
 
-    // recordingSetup();
 });
+
+var audio_context;
+var recorder;
 
 var createNode = function(index) {
     var id = "node" + index;
-    console.log("Test.");
     $('#container').append(
         $("<div>", {
             "class": "node",
@@ -84,7 +87,9 @@ var createNode = function(index) {
         dropOptions : dropOptions
     };
     var e1 = jsPlumb.addEndpoint(id, { anchor: [1, 0.5, 1, 0]}, endpoint);
-    var e2 = jsPlumb.addEndpoint(id, { anchor: [0, 0.5, -1, 0]}, endpoint)
+    var e2 = jsPlumb.addEndpoint(id, { anchor: [0, 0.5, -1, 0]}, endpoint);
+
+    return id;
 }
 
 
@@ -104,30 +109,25 @@ var startUserMedia = function(stream) {
 
 var startRecording = function() {
     recorder && recorder.record();
-    this.disabled = true;
-    this.nextElementSibling.disabled = false;
 };
 
-var stopRecording = function() {
-    recorder && recorder.stop();
-    this.disabled = true;
-    this.previousElementSibling.disabled = false;
+var stopRecording = function(id) {
+    recorder.stop();
 
-    recorder.clear();
-};
-
-var createDownloadLink = function() {
-    recorder && recorder.exportWAV(function(blob) {
-        jQuery.ajax({
-            url: '/upload/',
+    recorder.exportWAV(function(blob) {
+        var fd = new FormData();
+        fd.append('audio', blob);
+        $.ajax({
+            url: '/upload',
             type: 'POST',
-            data: {
-                audio: blob
-            },
-            success: function(content){
-            }
+            data: fd,
+            processData: false,
+            contentType: false
+        }).done(function(data) {
+            $('#' + id).attr('data-id', data);
         });
     });
+    recorder.clear();
 };
 
 var recordingSetup = function() {
@@ -136,9 +136,5 @@ var recordingSetup = function() {
 
     //Compatibility
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
-
-    var btnStart = document.getElementById("btnStart"),
-        btnStop = document.getElementById("btnStop");
-        btnStart.addEventListener("click", startRecording);
-        btnStop.addEventListener('click', stopRecording);
+    navigator.getUserMedia({audio: true}, startUserMedia);
 };
