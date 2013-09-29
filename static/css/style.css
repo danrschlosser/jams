@@ -184,7 +184,7 @@ padding: 30px 40px;
 	font-size: 0.9em;
 	color: #3e7aab;
 	text-decoration: none;
-	bottom: 0;
+	bottom: 10px;
 	left: 50%;
 	right: 50%;
 	width: 100px;
@@ -195,7 +195,7 @@ padding: 30px 40px;
 
 .about a {
 	font-size: 0.9em;
-	font-color: #3e7aab;
+	color: #3e7aab;
 	text-align: center;
 	text-decoration: none;
 	vertical-align: bottom;
@@ -222,6 +222,21 @@ padding: 30px 40px;
 	background: blue;
 }
 
+<<<<<<< HEAD
+=======
+.node {
+	position: absolute;
+}
+
+.promo-line {
+	color: #f5f5f5;
+	margin: 5px 10px;
+	font-size: 1.2em;
+	font-style: italic;
+	font-weight: 700;
+}
+
+>>>>>>> added tagline (map your music)
 /** DRAG/DROP CLASSES **/
 .dragActive { border:2px dotted orange; }
 .dropHover { border:1px dotted red; }
