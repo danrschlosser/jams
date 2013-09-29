@@ -19,7 +19,12 @@ $(document).ready(function(){
         );
     });
 
-    
+    var blink = function(){
+    	console.log("blinkin'");
+    	$('.icon-circle-empty').delay(200).fadeTo(200,0.5).delay(200).fadeTo(200,1, blink);
+	}
+	blink();
+
 
     var audio_context;
     var recorder;
@@ -79,5 +84,5 @@ $(document).ready(function(){
         btnStop.addEventListener('click', stopRecording);
     };
 
-    recordingSetup();
+    //recordingSetup();
 });
