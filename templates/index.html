@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block body %}
-    <h1>test</h1>
-    <article>
-        <section>
-            <button id="btnStart">Start</button>
-            <button id="btnStop">Stop</button>            
-        </section>
-        <canvas id="canvas" width="320" height="240"></canvas>
-    </article>
-    <ul id="recordingslist"></ul>
+    <div id="container">
+
+        <div class="node">
+            <textarea></textarea>
+            <div class="play-pause"></div>
+        </div>
+
+        <div class="new-clip"></div>
+    </div>
 {% endblock body %}
