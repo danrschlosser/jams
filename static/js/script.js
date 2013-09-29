@@ -30,6 +30,22 @@ $(document).ready(function(){
     	e.preventDefault();
     	window.shouldKeepBlinking = false;
     });
+
+    $(document).on("click", '.icon-play', function(e) {
+    	e.preventDefault();
+    	//playback, icon switches to pause
+    	$(this).removeClass("icon-play").addClass("icon-pause");
+
+    })
+
+    $(document).on("click", '.icon-pause', function(e) {
+    	e.preventDefault();
+    	//stop playback, icon switches to play
+    	$(this).removeClass("icon-pause").addClass("icon-play");
+
+    })
+
+    
     // bind to connection/connectionDetached events and update the list of connections on screen
     jsPlumb.bind("connection", function(info, originalEvent) {
         updateConnections(info.connection);
@@ -147,7 +163,7 @@ var stopRecording = function(id) {
 
 var recordingSetup = function() {
 
-    audio_context = new webkitAudioContext()
+    audio_context = new webkitAudioContext();
 
     //Compatibility
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;

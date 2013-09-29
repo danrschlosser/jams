@@ -179,6 +179,10 @@ padding: 30px 40px;
 	color: #e54141;
 }
 
+.icon-pause {
+	color: #999;
+}
+
 .about {
 	position: absolute;
 	font-size: 0.9em;
@@ -222,8 +226,6 @@ padding: 30px 40px;
 	background: blue;
 }
 
-<<<<<<< HEAD
-=======
 .node {
 	position: absolute;
 }
@@ -236,7 +238,6 @@ padding: 30px 40px;
 	font-weight: 700;
 }
 
->>>>>>> added tagline (map your music)
 /** DRAG/DROP CLASSES **/
 .dragActive { border:2px dotted orange; }
 .dropHover { border:1px dotted red; }
