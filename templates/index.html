@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block body %}
     <h1>test</h1>
-    <audio autoplay="autoplay" controls="controls">
+    <audio controls="controls">
         <source src="{{url_for('static', filename='audio/scary_pianerz.mp3') }}" />
     </audio>
     <article>
-        <audio id="audio" autoplay></audio>
+        <audio id="audio"></audio>
         <section>
             <button id="btnStart">Start</button>
             <button id="btnStop">Stop</button>            
