@@ -18,10 +18,10 @@ body {
 	background-color: whitesmoke;
 }
 
-h1, .logo {
-	font-family: 'Asap', sans-serif;
+.logo {
 	font-weight: 700;
-	font-size: 2em;
+	font-size: 2.4em;
+	margin: 0 10px;
 }
 
 .top-bar {
@@ -31,9 +31,10 @@ h1, .logo {
 	display: block;
 }
 
-.logo, .divider, .pages, nav, .song-selector > li, ul {
+.logo, .divider, .top-bar ul {
 	display: inline-block;
-	vertical-align: middle;
+	line-height: 40px;
+	vertical-align: bottom;
 }
 
 .pages {
@@ -48,10 +49,14 @@ h1, .logo {
 }
 
 .top-bar nav {
-	padding: 5px 20px;
+	display: inline-block;
+	padding: 5px 10px;
 	height: 40px;
 }
 
+.song-selector {
+	margin: 0 10px;
+}
 .song-selector li {
 	display: none;
 }
