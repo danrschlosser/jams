@@ -157,6 +157,10 @@ padding: 30px 40px;
 	bottom: 18px;
 }
 
+.icon-circle-empty {
+	color: #e54141;
+}
+
 .about {
 	position: absolute;
 	font-size: 0.9em;
