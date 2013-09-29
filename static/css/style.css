@@ -13,10 +13,12 @@ table {	border-collapse: collapse; border-spacing: 0; }
 /* End CSS Reset */
 
 html, body {
+	height: 100%;
 	background: white url("../img/noise_lines.png") repeat;
 }
 
 body {
+	position: relative;
 	font-family: 'Asap', sans-serif;
 	font-weight: 300;
 	background-color: whitesmoke;
@@ -26,6 +28,7 @@ h3 {
 	font-style: italic;
 	font-weight: 700;
 	font-size: 1.3em;
+	padding: 20px 0px 15px;
 }
 
 h1, .logo {
@@ -53,10 +56,7 @@ a:hover {
 
 .row {
 width: 100%;
-margin-left: auto;
-margin-right: auto;
-margin-top: 35px;
-margin-bottom: 0;
+margin: 35px auto 0;
 max-width: 800px;
 background: whitesmoke;
 padding: 30px 40px;
@@ -107,11 +107,17 @@ padding: 30px 40px;
 }
 
 .about {
+	position: absolute;
 	font-size: 0.9em;
 	font-color: #3e7aab;
-	text-align: center;
 	text-decoration: none;
-	vertical-align: bottom;
+	bottom: 0;
+	left: 50%;
+	right: 50%;
+	width: 100px;
+	margin-left: -50px;
+	text-align: center;
+
 }
 
 .about a {
