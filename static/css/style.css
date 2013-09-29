@@ -106,6 +106,27 @@ padding: 30px 40px;
 	font-size: 1.2em;
 }
 
+.about {
+	font-size: 0.9em;
+	font-color: #3e7aab;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: bottom;
+}
+
+.about a {
+	font-size: 0.9em;
+	font-color: #3e7aab;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: bottom;
+}
+
+.about a:hover {
+	text-decoration: underline;
+	color: #5CB6FF
+}
+
 .right {
 	float: right;
 }
