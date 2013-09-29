@@ -14,12 +14,13 @@ $(document).ready(function(){
     
     var index = 1;
     $('.new-node').click(function(e) {
-        $(".greeting").fadeTo(200,0);
         e.preventDefault(index);
+        $(".greeting").fadeTo(200,0);
+        createNode(index);
         index += 1;
     });                                             
 
-    // bind to connection/connectionDetached events, and update the list of connections on screen.
+    // bind to connection/connectionDetached events and update the list of connections on screen
     jsPlumb.bind("connection", function(info, originalEvent) {
         updateConnections(info.connection);
         console.log("connected");
@@ -112,8 +113,6 @@ var stopRecording = function() {
     this.disabled = true;
     this.previousElementSibling.disabled = false;
 
-  
-
     recorder.clear();
 };
 
@@ -142,5 +141,4 @@ var recordingSetup = function() {
         btnStop = document.getElementById("btnStop");
         btnStart.addEventListener("click", startRecording);
         btnStop.addEventListener('click', stopRecording);
-    };
-});
+};
