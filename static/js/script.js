@@ -32,7 +32,7 @@ $(document).ready(function(){
     	e.preventDefault();
     	//playback, icon switches to pause
     	$(this).removeClass("icon-play").addClass("icon-pause");
-        startPlaying($(this).attr('data-id'))
+        startPlaying($(this).parent().parent().parent().attr('data-id'))
 
     })
 
@@ -168,9 +168,12 @@ var startPlaying = function(data) {
             id: data
         }
     }).done(function(data) {
-        $('<audio autoplay></audio>', {
-            src: data
-        });
+        $('<audio autoplay="autoplay"></audio>', {
+        }).append(
+        $('<source />', {
+            src: data,
+            type: 'audio/mpeg'
+        })).appendTo('#hidden');
     });
 }
 

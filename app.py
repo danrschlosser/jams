@@ -23,6 +23,7 @@ class routes:
     def upload():
 
         file_name = str(datetime.now()) + '.wav'
+        file_name = file_name.replace(' ', '')
 
         wav = request.files.get('audio')
         wav.save(audio_loc + file_name)
@@ -37,7 +38,7 @@ class routes:
         nodeToPlay = mongo.db.nodes.find({'_id': obj_id})[0]
         file_name = nodeToPlay.get('file_name')
         
-        return 'localhost:5000/' + audio_loc + file_name
+        return audio_loc + file_name
 
 if __name__ == '__main__':
     app.run(debug=True)
