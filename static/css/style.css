@@ -46,6 +46,11 @@ a:hover {
 	color: #5CB6FF;
 }
 
+.logo a, .logo a:hover{
+	color: whitesmoke;
+	text-decoration: none;
+}
+
 .row {
 width: 100%;
 margin-left: auto;
