@@ -1,16 +1,21 @@
-{% extends "base.html" %}
-{% block body %}
-	<h1>test</h1>
-    <audio autoplay="autoplay" controls="controls">
-        <source src="{{url_for('static', filename='audio/scary_pianerz.mp3') }}" />
-    </audio>
-    <article>
-        <audio id="audio" autoplay></audio>
-        <section>
-            <button id="btnStart">Start</button>
-            <button id="btnStop">Stop</button>            
-        </section>
-        <canvas id="canvas" width="320" height="240"></canvas>
-    </article>
-    <audio class="record" autoplay="autoplay"></audio>
-</body>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="{{url_for('static', filename='js/script.js') }}"></script>
+    </head>
+    <body>
+        <h1>test</h1>
+        <audio autoplay="autoplay" controls="controls">
+            <source src="{{url_for('static', filename='audio/scary_pianerz.mp3') }}" />
+        </audio>
+        <article>
+            <audio id="audio" autoplay></audio>
+            <section>
+                <button id="btnStart">Start</button>
+                <button id="btnStop">Stop</button>            
+            </section>
+            <canvas id="canvas" width="320" height="240"></canvas>
+        </article>
+        <audio class="record" autoplay="autoplay"></audio>
+    </body>
+</html>
