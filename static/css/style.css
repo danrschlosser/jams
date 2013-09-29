@@ -12,21 +12,54 @@ blockquote:before, blockquote:after, q:before, q:after { content: ''; content: n
 table {	border-collapse: collapse; border-spacing: 0; }
 /* End CSS Reset */
 
+html, body {
+	background: white url("../img/noise_lines.png") repeat;
+}
+
 body {
 	font-family: 'Asap', sans-serif;
 	font-weight: 300;
 	background-color: whitesmoke;
 }
 
-.logo {
+h3 {
+	font-style: italic;
+	font-weight: 700;
+	font-size: 1.3em;
+}
+
+h1, .logo {
 	font-weight: 700;
 	font-size: 2.4em;
 	margin: 0 10px;
 }
 
+p {
+	line-height: 1.5;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	color: #5CB6FF;
+}
+
+.row {
+width: 100%;
+margin-left: auto;
+margin-right: auto;
+margin-top: 35px;
+margin-bottom: 0;
+max-width: 800px;
+background: whitesmoke;
+padding: 30px 40px;
+}
+
 .top-bar {
 	height: 50px;
-	background-color: #191919;
+	background-color: #3e7aab;
 	color: whitesmoke;
 	display: block;
 }
