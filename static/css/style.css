@@ -15,6 +15,7 @@ table {	border-collapse: collapse; border-spacing: 0; }
 body {
 	font-family: 'Asap', sans-serif;
 	font-weight: 300;
+	background-color: whitesmoke;
 }
 
 h1, .logo {
@@ -25,14 +26,43 @@ h1, .logo {
 
 .top-bar {
 	height: 50px;
+	background-color: #191919;
+	color: whitesmoke;
 	display: block;
 }
 
-.top-bar > nav {
+.logo, .divider, .pages, nav, .song-selector > li, ul {
 	display: inline-block;
+	vertical-align: middle;
 }
 
-h3 {
-	font-family: "Montserrat";
-	font-weight: 400;
+.pages {
+	margin-right: 20px;
+}
+
+.divider {
+	width: 1px;
+	height: 100%;
+	margin: 0 10px;
+	background-color: white;
+}
+
+.top-bar nav {
+	padding: 5px 20px;
+	height: 40px;
+}
+
+.song-selector li {
+	display: none;
+}
+.song-selector .active { display: inline-block; }
+
+.pages a, .song-selector a {
+	color: whitesmoke;
+	text-decoration: none;
+	font-size: 1.2em;
+}
+
+.right {
+	float: right;
 }
