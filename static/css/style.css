@@ -13,11 +13,12 @@ table {	border-collapse: collapse; border-spacing: 0; }
 /* End CSS Reset */
 
 body {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Asap', sans-serif;
+	font-weight: 300;
 }
 
 h1, .logo {
-	font-weight: 800;
+	font-weight: 700;
 	font-size: 2em;
 }
 
@@ -28,4 +29,9 @@ h1, .logo {
 
 .top-bar > nav {
 	display: inline-block;
+}
+
+h3 {
+	font-family: "Montserrat";
+	font-weight: 400;
 }
