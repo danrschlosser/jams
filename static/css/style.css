@@ -128,11 +128,14 @@ padding: 30px 40px;
 	background-color: #c5e6ff;
 	border: 2px solid #3e7aab;
 	border-radius: 10px;
-	margin: 10px 20px;
 	padding: 10px 10px;
 	width: 200px;
 	height: 25px;
 	box-shadow: 3px 3px 1px #999;
+	position: absolute;
+	top:45%;
+	left: 45%;
+
 }
 
 .node input {
@@ -213,15 +216,10 @@ padding: 30px 40px;
 	height: calc(100%-50px);
 }
 
-
 .new-clip {
 	width: 20px;
 	height: 20px;
 	background: blue;
-}
-
-.node {
-	position: absolute;
 }
 
 /** DRAG/DROP CLASSES **/
