@@ -1,6 +1,4 @@
 jams
 ====
 
-Snippet-based composition webapp for nerds
-Hi 
-sup
+Snippet-based music composition webapp.
