@@ -12,7 +12,7 @@ First install MongoDB
 	
 If you don't have `brew` installed, you can get it [here](http://brew.sh/), or install mongo in another way.
 
-In the top level directory type all the commands that are preceded by `$`:
+In the top level directory:
 
 	# Don't forget the "."
 	$ virtualenv --no-site-packages . 
