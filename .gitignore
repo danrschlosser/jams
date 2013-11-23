@@ -1,2 +1,7 @@
 *.swp
 *.DS_store
+.Python*
+bin/
+include/
+lib/
+static/audio/
